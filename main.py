@@ -12,8 +12,8 @@ from tencentcloud.ocr.v20181119 import models, ocr_client
 import image2base64
 
 try:
-    cred = credential.Credential("AKIDB5lKfllDBtKXaNEtemeFbgW8fxwlBuEL",
-                                 "7zczOYkjSKzQbYFpBOPBuPp06CMHwAE3")
+    cred = credential.Credential("secretid",
+                                 "secretkey")
     httpProfile = HttpProfile()
     httpProfile.endpoint = "ocr.tencentcloudapi.com"
 
