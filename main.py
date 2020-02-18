@@ -12,8 +12,8 @@ from tencentcloud.ocr.v20181119 import models, ocr_client
 import image2base64
 
 try:
-    cred = credential.Credential("xxxxx",
-                                 "xxxx")
+    cred = credential.Credential("AKIDB5lKfllDBtKXaNEtemeFbgW8fxwlBuEL",
+                                 "7zczOYkjSKzQbYFpBOPBuPp06CMHwAE3")
     httpProfile = HttpProfile()
     httpProfile.endpoint = "ocr.tencentcloudapi.com"
 
@@ -84,6 +84,6 @@ try:
                     "检查提示": [cntNote],
                     "目录": [root + "/" + file]
                 })
-            data.to_csv("name2file.csv", mode="a", header=1, index=0)
+            data.to_csv("name2file.csv", mode="a", header=0, index=0)
 except TencentCloudSDKException as err:
     print(err)
