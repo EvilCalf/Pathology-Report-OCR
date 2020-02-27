@@ -12,8 +12,8 @@ from tencentcloud.ocr.v20181119 import models, ocr_client
 import image2base64
 
 try:
-    cred = credential.Credential("secretid",
-                                 "secretkey")
+    cred = credential.Credential("AKIDB5lKfllDBtKXaNEtemeFbgW8fxwlBuEL",
+                                 "7zczOYkjSKzQbYFpBOPBuPp06CMHwAE3")
     httpProfile = HttpProfile()
     httpProfile.endpoint = "ocr.tencentcloudapi.com"
 
@@ -36,6 +36,11 @@ try:
             if (cnt.find('表现') != -1):
                 cntPerform = cnt[cnt.find('表现') + 3:cnt.find('结果') - 2].strip()
                 cntResult = cnt[cnt.find('结果') + 3:cnt.find('报告')].strip()
+                if cntPerform.find('送达部位')!=-1:
+                    list_cntPerform=list(cntPerform)
+                    list_cntPerform.insert(cntPerform.find('送达部位'),'。')
+                    list_cntPerform.insert(cntPerform.find('食管')+1,'。')
+                    cntPerform=''.join(list_cntPerform)
                 data = pd.DataFrame({
                     "影像表现：": [cntPerform],
                     "诊断结果": [cntResult],
@@ -49,6 +54,11 @@ try:
             if (cnt.find('检查所见') != -1):
                 cntCheck = cnt[cnt.find('检查所见') + 5:cnt.find('活检')].strip()
                 cntDiagnose1 = cnt[cnt.find('镜检诊断') + 5:cnt.find('建议')].strip()
+                if cntCheck.find('送达部位')!=-1:
+                    list_cntCheck=list(cntCheck)
+                    list_cntCheck.insert(cntCheck.find('送达部位'),'。')
+                    list_cntCheck.insert(cntCheck.find('食管')+1,'。')
+                    cntCheck=''.join(list_cntCheck)
                 data = pd.DataFrame({
                     "影像表现：": ['None'],
                     "诊断结果": ['None'],
